@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>build your own chatbot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+build your own chatbot</font>
+</center></td></tr></table>
+<pre><span class="s0">import random 
+successful_interactions = 0 
+user_needs = [&quot;get information&quot;, &quot;ask a question&quot;, &quot;request assistance&quot;] 
+ 
+chatbot_personality = { 
+    &quot;greeting&quot;: [&quot;Hello!&quot;, &quot;Hi there!&quot;, &quot;Hey!&quot;], 
+    &quot;farewell&quot;: [&quot;Goodbye!&quot;, &quot;Bye!&quot;, &quot;See you later!&quot;], 
+    &quot;positive&quot;: [&quot;Great&quot;, &quot;Awesome&quot;, &quot;Fantastic&quot;], 
+    &quot;negative&quot;: [&quot;I'm sorry.&quot;, &quot;Apologies.&quot;, &quot;My apologies.&quot;], 
+    &quot;unknown&quot;: [&quot;I'm not sure.&quot;, &quot;I don't know.&quot;, &quot;I can't answer that.&quot;] 
+} 
+ 
+chatbot_flow = { 
+    &quot;greeting&quot;: [&quot;Hello!&quot;, &quot;Hi there!&quot;, &quot;Hey! How can I help you today?&quot;], 
+    &quot;farewell&quot;: [&quot;Goodbye!&quot;, &quot;Bye!&quot;, &quot;See you later!&quot;], 
+    &quot;positive&quot;: [&quot;I'm glad you're satisfied!&quot;, &quot;I'm happy to help!&quot;, &quot;You're welcome!&quot;], 
+    &quot;negative&quot;: [&quot;I'm sorry to hear that.&quot;, &quot;I'll do my best to improve.&quot;, &quot;I apologize for any inconvenience.&quot;], 
+    &quot;unknown&quot;: [&quot;I'm sorry, I don't understand.&quot;, &quot;Could you please rephrase that?&quot;, &quot;I'm not sure how to respond.&quot;], 
+    &quot;Info&quot;: [&quot;A friendly chatbot is a conversational AI program that is designed to interact with users in a pleasant and helpful manner.It is programmed to understand and respond to user queries, provide information, and assist with tasks in a friendly and approachable way.&quot;,&quot;Ask any Question you want.&quot;] 
+} 
+ 
+ 
+def get_user_input(): 
+    user_input = input(&quot;User: &quot;) 
+    return user_input.lower() 
+ 
+ 
+def generate_chatbot_response(user_input): 
+    chatbot_response = &quot;&quot; 
+    user_input = user_input.lower() 
+ 
+    if any(need in user_input for need in user_needs): 
+        chatbot_response = random.choice(chatbot_flow[&quot;Info&quot;]) 
+        global successful_interactions 
+        successful_interactions += 1 
+    elif &quot;hi&quot; in user_input or &quot;hello&quot; in user_input: 
+        chatbot_response = random.choice(chatbot_flow[&quot;greeting&quot;]) 
+    elif &quot;Great&quot; in user_input or &quot;Awesome&quot; in user_input: 
+        chatbot_response = random.choice(chatbot_flow[&quot;positive&quot;]) 
+    elif &quot;bye&quot; in user_input or &quot;goodbye&quot; in user_input: 
+        chatbot_response = random.choice(chatbot_flow[&quot;farewell&quot;]) 
+    else: 
+        chatbot_response = random.choice(chatbot_flow[&quot;positive&quot;]) 
+    return chatbot_response 
+ 
+ 
+def start_chatbot(): 
+    while True: 
+        user_input = get_user_input() 
+        if user_input == &quot;exit&quot;: 
+            break 
+        chatbot_response = generate_chatbot_response(user_input) 
+        print(&quot;Chatbot: &quot; + chatbot_response) 
+ 
+ 
+print(&quot;Welcome to Chatbot!&quot;) 
+print(&quot;Chatbot: &quot; + &quot;How may i assist you today &quot;) 
+start_chatbot() 
+ 
+print(&quot;Successful Interactions: &quot; + str(successful_interactions)) 
+</span></pre>
+</body>
+</html>
